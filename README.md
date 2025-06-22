@@ -29,11 +29,12 @@ https://archive.org/download/charm.li_data_202306/operation-charm/
   ```
   
 2) Install docker.io package (Debian/Ubuntu derived OS)
-   ```apt install docker.io```
+
+```sudo apt install docker.io```
    
 3) Create/Run the docker container. Need to mount the directory where the database and squashfs are located. Replace `<database_dir>` with the full path to this directory. You can use a nfs share, samba share, or even an external disk. Just need to mount it and record where it's mounted.
 ```
-docker run -d --privileged -v <database_dir>:/data --name Charm -p 8080:8080 preludedrew/docker-charm:latest
+sudo docker run -d --privileged -v <database_dir>:/data --name Charm -p 8080:8080 preludedrew/docker-charm:latest
 ```
 
 4) You can verify it's working by running a curl.
@@ -51,9 +52,9 @@ http://localhost:8080
 
 #### If you run into any issues, you can grab the logs from the container. This won't give you a ton, but might indicate something.
 ```
-docker logs -f Charm
+sudo docker logs -f Charm
 ```
 #### In case the logs indicate you need to look at a log file. You can shell into the container and then cat the log files with:
 ```
-docker exec -it Charm bash
+sudo docker exec -it Charm bash
 ```
